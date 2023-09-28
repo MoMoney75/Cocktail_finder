@@ -1,0 +1,51 @@
+nav ul {
+    list-style: none;
+    background-color: #333;
+    padding: 0;
+}
+
+nav ul li {
+    display: inline-block;
+    margin-right: 20px;
+    position: relative;
+}
+
+nav ul li a {
+    text-decoration: none;
+    color: white;
+    padding: 10px;
+}
+
+nav ul li.submenu:hover .submenu-content {
+    display: block;
+}
+
+/* Hide submenu by default */
+nav ul li .submenu-content {
+    display: none;
+    position: absolute;
+    background-color: #333;
+    border: 1px solid #777;
+    padding: 0;
+    top: 100%;
+    left: 0;
+}
+
+nav ul li .submenu-content li {
+    width: 100%;
+}
+
+nav ul li .submenu-content li a {
+    display: flex;
+    flex-direction: row;
+    padding: 10px;
+    color: white;
+    text-decoration: none;
+   
+    
+}
+
+/* Style for submenu items on hover */
+nav ul li .submenu-content li:hover {
+    background-color: #444;
+}

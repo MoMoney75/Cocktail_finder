@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Favorites</title>
+    <link rel="stylesheet" href="static/app.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <a href="/search_ingredients">Search new drink</a>
+            <li class="submenu">
+                <a href="#">Account</a>
+                <ul class="submenu-content">
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/{{user.user_id}}/edit">Edit profile</a></li>
+                    <li><a href="/{{user.user_id}}/delete">Delete account</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    {% if session['curr_user'] %}
+
+
+    <h1>HERE ARE YOUR FAVORITES</h1>
+
+
+
+    {% if favorites == [] %}
+
+    {% for message in get_flashed_messages() %}
+
+    {{message}}
+
+    {% endfor %}
+
+    <p>You have no favorites!</p>
+
+    {% else %}
+
+    <ul>
+
+
+        {% for message in get_flashed_messages() %}
+
+        {{message}}
+
+        {% endfor %}
+
+        {% for drink in drink_data %}
+        <li>
+            <a href="/details/{{ drink['details']['idDrink']}}">
+                <p>{{ drink['name'] }}</p>
+            </a>
+
+            <img src="{{ drink['details']['strDrinkThumb']}}" style=width:100px, height=100px
+                alt="picture of {{drink['name']}}">
+
+            <form action="/{{drink['details']['idDrink']}}/delete_favorite" , method="post">
+
+                <button>remove</button>
+
+            </form>
+
+        </li>
+        {% endfor %}
+        {% endif %}
+        {% endif %}
+    </ul>
+</body>
+
+</html>

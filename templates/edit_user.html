@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit</title>
+    <link rel="stylesheet" href="static/app.css">
+</head>
+
+<body>
+
+    <nav>
+        <ul>
+            <a href="/search_ingredients">Search new drink</a>
+            <li class="submenu">
+                <a href="#">Account</a>
+                <ul class="submenu-content">
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/{{user.user_id}}/edit">Edit profile</a></li>
+                    <li><a href="/{{user.user_id}}/delete">Delete account</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <form action="/{{user.user_id}}/edit" method="POST">
+
+        {{form.hidden_tag()}}
+
+        {% for field in form if field.widget.input_type != 'hidden' %}
+
+        {{field.label}}
+
+        {{field}}
+
+        {% endfor %}
+
+        <button>submit</button>
+
+    </form>
+
+    <a href="/search_ingredients"><button>cancel</button></a>
