@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Results</title>
+    <link rel="stylesheet" href="static/app.css">
+
+</head>
+
+<body>
+    {% if session['curr_user'] %}
+
+    <nav>
+        <ul>
+            <a href="/search_ingredients">Search new drink</a>
+            <a href="/{{user.user_id}}/favorites">Favorites</a>
+            <li class="submenu">
+                <a href="#">Account</a>
+                <ul class="submenu-content">
+                    <li><a href="/logout">Logout</a></li>
+                    <li><a href="/{{user_id}}/edit">Edit profile</a></li>
+                    <li><a href="/{{user_id}}/delete">Delete account</a></li>
+
+                </ul>
+            </li>
+        </ul>
+    </nav>
+    <h1>Here are your search results</h1>
+    <ul>
+        {% for drink in drink_data %}
+
+        <li>
+
+            <a href="/details/{{ drink['details']['idDrink']}}" target="_blank">
+                <p>{{ drink['name'] }}</p>
+            </a>
+
+            <img src="{{ drink['details']['strDrinkThumb']}}" style=width:100px, height=100px
+                alt="picture of {{drink['name']}}">
+
+            <!-- add if favorites i already in user.favorites, button should say "remove favorite" -->
+            <!-- <form action="/{{drink['details']['idDrink']}}/delete_favorites" method="post" target="_blank">
+
+                <button>unfavorite</button>
+
+            </form> -->
+
+            <form action="/{{drink['details']['idDrink']}}/add_favorites" method="post" target="_blank">
+
+                <button>favorite</button>
+
+            </form>
+
+
+        </li>
+
+        {% endfor %}
+    </ul>
+
+    {% else %}
+
+    {% for message in get_flashed_messages() %}
+
+    {{message}}
+
+    {% endfor %}
+
+    {% endif %}
+</body>
+
+</html>
