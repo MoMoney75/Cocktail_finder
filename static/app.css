@@ -1,8 +1,36 @@
-nav ul {
-    list-style: none;
-    background-color: #333;
-    padding: 0;
-}
+
+body {
+    display: -ms-flexbox;
+    display: -webkit-box;
+    display: flex;
+    -ms-flex-align: center;
+    -ms-flex-pack: center;
+    -webkit-box-align: center;
+    align-items: center;
+    -webkit-box-pack: center;
+    justify-content: center;
+    padding-top: 40px;
+    padding-bottom: 40px;
+  }
+
+  /* .main-content{
+    display: flex;
+    flex-direction: column;
+    position: fixed;
+    top: 0;
+    left: 0;
+    margin: auto;
+    width: 100%;
+  } */
+
+  .nav-bar-header{
+    padding-bottom: 4em;
+
+  }
+
+  .form-ctn{
+    padding: 4em 0;
+  }
 
 nav ul li {
     display: inline-block;
@@ -12,15 +40,27 @@ nav ul li {
 
 nav ul li a {
     text-decoration: none;
-    color: white;
+    color :#333;
     padding: 10px;
 }
+
+nav ul a {
+    text-decoration: none;
+    color:#333;
+    padding: 10px;
+}
+
+nav ul li{
+    text-decoration: none;
+    color :#333;
+}
+
 
 nav ul li.submenu:hover .submenu-content {
     display: block;
 }
 
-/* Hide submenu by default */
+
 nav ul li .submenu-content {
     display: none;
     position: absolute;
@@ -29,6 +69,7 @@ nav ul li .submenu-content {
     padding: 0;
     top: 100%;
     left: 0;
+
 }
 
 nav ul li .submenu-content li {
@@ -45,7 +86,40 @@ nav ul li .submenu-content li a {
     
 }
 
-/* Style for submenu items on hover */
+
 nav ul li .submenu-content li:hover {
-    background-color: #444;
+    background-color: #444 ;
+}
+
+.navbar{
+
+    flex-direction: row-reverse;
+    padding: 0 2em !important;
+}
+
+.submenu{
+    margin-bottom: 6em;
+}
+
+
+@media screen and (min-width:768px ) {
+    .container-md{
+        width: 60% !important;
+    }
+    
+}
+
+@media screen and (min-width:1440px ) {
+    .container-md{
+        width: 40% !important;
+    }
+    
+}
+
+
+@media screen and (min-width:2560px ) {
+    .container-md{
+        width: 30% !important;
+    }
+    
 }

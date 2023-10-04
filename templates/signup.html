@@ -6,26 +6,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Signup</title>
     <link rel="stylesheet" href="static/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
-    <form action="/signup/handle" method="POST">
+<body class="p-3 mb-2 bg-info-subtle text-emphasis-info">
+    <div class="container">
+        <h2 class="text-center">Create an account</h2>
+        <form action="/signup/handle" method="POST">
 
-        {{form.hidden_tag()}}
 
-        {% for field in form if field.widget.input_type != 'hidden' %}
+            {{form.hidden_tag()}}
+            {% for field in form if field.widget.input_type != 'hidden' %}
+            <div class="form-floating mb-3">
 
-        {{field.label}}
+                {% if field.name == "password" %}
+                <input type="password" class="form-control" id=" floatingInput" {{field}} <label for="floatingInput">
+                {{field.label}}
+                </label>
 
-        {{field}}
+                {% else %}
+                <input type="text" class="form-control" id=" floatingInput" {{field}} <label for="floatingInput">
+                {{field.label}}
+                </label>
 
-        {% endfor %}
+                {% endif %}
 
-        <button>create user</button>
+            </div>
 
-    </form>
+            {% endfor %}
 
-    <a href="/"><button>cancel</button></a>
+            <button class="btn btn-outline-success">Submit</button>
+
+
+        </form>
+        <div id="cancel-btn"> <a href="/"><button class="btn btn-outline-danger">Cancel</button></a></div>
+    </div>
+
+
 
 </body>
 

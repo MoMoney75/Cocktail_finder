@@ -6,47 +6,59 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Search</title>
     <link rel="stylesheet" href="static/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
-    <nav>
-        <ul>
-            <a href="/{{user_id}}/favorites">Favorites</a>
-            <li class="submenu">
-                <a href="#">Account</a>
-                <ul class="submenu-content">
-                    <li><a href="/logout">Logout</a></li>
-                    <li><a href="/{{user_id}}/edit">Edit profile</a></li>
-                    <li><a href="/{{user_id}}/delete">Delete account</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+<body class="p-3 mb-2 bg-info-subtle text-emphasis-info">
+    <div class="main-content">
+        <header class="nav-bar-header">
+            <div>
+                <div class="row">
+                    <nav class="navbar">
+                        <ul>
+                            <a href="/{{user_id}}/favorites">Favorites</a>
+                            <li class="submenu">
+                                <a href="#">Account</a>
+                                <ul class="submenu-content">
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a href="/{{user_id}}/edit">Edit profile</a></li>
+                                    <li><a href="/{{user_id}}/delete">Delete account</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+
+        <div class="container form-ctn">
+            <h1 class="h1">Search for a cocktail by ingredients!</h1>
+            {% for message in get_flashed_messages() %}
+            <p class="text-center">
+                {{message}}
+            </p>
+            {% endfor %}
+            <form action="/handle_search_ingredients" method="POST">
+
+                {{form.hidden_tag()}}
+                {% for field in form if field.widget.input_type != 'hidden' %}
+                <div class="form-floating mb-3">
+
+                    <input type="text" class="form-control" id=" floatingInput" {{field}} <label for="floatingInput">
+                    {{field.label}}
+                    </label>
+
+                    {% endfor %}
+                </div>
 
 
-    <h1>Search for a cocktail by ingredients!</h1>
+                <button class="btn btn-outline-success">Grab a drink!</button>
 
-    {% for message in get_flashed_messages() %}
 
-    {{message}}
-
-    {% endfor %}
-
-    <form action="/handle_search_ingredients" method="POST">
-        {{form.hidden_tag()}}
-
-        {% for field in form if field.widget.input_type != 'hidden' %}
-
-        {{field.label}}
-
-        {{field}}
-
-        {% endfor %}
-
-        <button>search for drink</button>
-
-    </form>
-
+            </form>
+        </div>
+    </div>
 </body>
 
 </html>

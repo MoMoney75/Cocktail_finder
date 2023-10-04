@@ -64,7 +64,7 @@ def login():
 def logout():
     session.pop('curr_user')
     session.pop('user_id')
-    flash('Logout successful')
+    flash('Logout successful!')
     return redirect('/')
         
 @app.route('/signup', methods=["GET", "POST"])
@@ -218,7 +218,7 @@ def add_favorites(drink_id):
         except:
             db.session.rollback()
             flash("Cocktail is already in your favorites!")
-            return redirect(f"/{user_id}/favorites")
+            return redirect (f"/{user_id}/favorites")
 
     else: 
         flash('You must be logged in to see this page!')

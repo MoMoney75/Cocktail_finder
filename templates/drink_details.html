@@ -6,69 +6,79 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Drink Details</title>
     <link rel="stylesheet" href="static/app.css">
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
+        integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 </head>
 
-<body>
+<body class="p-3 mb-2 bg-info-subtle text-emphasis-info">
+    <div class="main-content">
+        <header class="nav-bar-header">
+            <div>
+                <div class="row">
+                    <nav class="navbar">
+                        <ul>
+                            <a href="/{{user_id}}/favorites">Favorites</a>
+                            <li class="submenu">
+                                <a href="#">Account</a>
+                                <ul class="submenu-content">
+                                    <li><a href="/logout">Logout</a></li>
+                                    <li><a href="/{{user_id}}/edit">Edit profile</a></li>
+                                    <li><a href="/{{user_id}}/delete">Delete account</a></li>
+                                </ul>
+                            </li>
+                        </ul>
+                    </nav>
+                </div>
+            </div>
+        </header>
+        <div class="container-fluid">
+            {% for detail in data['drinks'] %}
+            <h1 class="h1">
+                {{detail['strDrink']}}
 
-    <nav>
-        <ul>
-            <a href="/search_ingredients"> Search new drink</a>
-            <a href="/{{user_id}}/favorites">Favorites</a>
-            <li class="submenu">
-                <a href="#">Account</a>
-                <ul class="submenu-content">
-                    <li><a href="/logout">Logout</a></li>
-                    <li><a href="/{{user_id}}/edit">Edit profile</a></li>
-                    <li><a href="/{{user_id}}/delete">Delete account</a></li>
-                </ul>
-            </li>
-        </ul>
-    </nav>
+            </h1>
 
-    {% for detail in data['drinks'] %}
-    <h1>
-        {{detail['strDrink']}}
-    </h1>
+            <div>
+                <img src="{{detail['strDrinkThumb']}}" style=width:200px, height=200px
+                    alt="image of {{detail['strDrink']}}">
+            </div>
 
-    <div>
-        <img src="{{detail['strDrinkThumb']}}" style=width:200px, height=200px alt="imgae of {{detail['strDrink']}}">
+            <h2 class="h4">Ingredients</h2>
+            <ul>
+                {% for i in range(1,16) %}
+                {% if (detail['strIngredient' ~ i|string] != None) and (detail['strMeasure'] ~ i|string !=None) %}
+                <li>
+
+                    {% if detail['strMeasure' ~i|string] == None %}
+
+                    1 {{detail['strIngredient' ~ i|string]}}
+
+                    {% else %}
+
+                    {{detail['strMeasure' ~i|string]}}
+                    {{detail['strIngredient' ~ i|string]}}
+
+                    {% endif %}
+
+                </li>
+                {% endif %}
+                {% endfor %}
+            </ul>
+            <h3 class="h4">Instructions: </h3>
+            <p>
+                {{detail['strInstructions']}}
+            </p>
+
+            <form action="/{{detail['idDrink']}}/add_favorites" method="post">
+
+                <button class="btn btn-outline-success text-center">favorite</button>
+
+            </form>
+
+
+            {% endfor %}
+        </div>
     </div>
-
-    <ul id="ingredients">
-
-        {% for i in range(1,16) %}
-        {% if (detail['strIngredient' ~ i|string] != None) and (detail['strMeasure'] ~ i|string !=None) %}
-
-        <li>
-
-            {% if detail['strMeasure' ~i|string] == None %}
-
-            1 {{detail['strIngredient' ~ i|string]}}
-
-            {% else %}
-
-            {{detail['strMeasure' ~i|string]}}
-            {{detail['strIngredient' ~ i|string]}}
-
-            {% endif %}
-
-        </li>
-        {% endif %}
-        {% endfor %}
-    </ul>
-
-    <p>Instructions: {{detail['strInstructions']}}</p>
-
-    <form action="/{{detail['idDrink']}}/add_favorites" method="post">
-
-        <button>favorite</button>
-
-    </form>
-
-    {% endfor %}
-
-
-
 </body>
 
 </html>
