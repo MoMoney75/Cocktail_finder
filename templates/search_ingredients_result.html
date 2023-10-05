@@ -39,7 +39,7 @@
         <div class="container">
             <div class="row">
                 {% for drink in drink_data %}
-                <div class="col-md-2"> 
+                <div class="col-md-2"> <!-- Use col-md-2 to show 5 items per row on medium-sized screens -->
                     <a href="/details/{{ drink['details']['idDrink'] }}" target="_blank">
                         <h3 class="h6">{{ drink['name'] }}</h3>
                     </a>

@@ -21,7 +21,7 @@
 
 
             {% endfor %}
-            <form action="/login/handle" method="POST">
+            <form action="/login" method="POST">
                 {{form.hidden_tag()}}
                 {% for field in form if field.widget.input_type != 'hidden' %}
 
@@ -47,7 +47,7 @@
 
 
 
-            <p class="lead">or don't have an account? click <a href=" /signup">here</a> to sign up!</p>
+            <p class="lead">or don't have an account? click <a href="/signup">here</a> to sign up!</p>
         </div>
     </div>
 

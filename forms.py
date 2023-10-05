@@ -12,7 +12,6 @@ class SignUp(FlaskForm):
     username = StringField('Username', validators=[InputRequired(), Length(min=8,max=16, message="username must be between 8 and 16 characters long")])
     password = PasswordField('Password', validators=[InputRequired(), Length(min=8, max=13,message="password must be between 8 and 13 characters long")])
     
-
 class SearchIngredient(FlaskForm):
     ingredients1 = StringField('First Ingredient', validators=[InputRequired()])
     ingredients2 = StringField('Second Ingredient(Optional)', validators=[Optional()])

@@ -1,8 +1,6 @@
-
 from flask_bcrypt import Bcrypt
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import delete, update, ForeignKey
-
 
 bcrypt = Bcrypt()
 db = SQLAlchemy()
@@ -20,10 +18,7 @@ class User(db.Model):
      password = db.Column(db.Text, unique=False, nullable=False)
      favorites = db.relationship('Favorites', backref='user', cascade='all, delete-orphan')
 
-
-
 class Favorites(db.Model):
-     
      __tablename__ = "favorites"
 
      favorite_id = db.Column(db.Integer, primary_key=True)

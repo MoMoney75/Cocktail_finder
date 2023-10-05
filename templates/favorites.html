@@ -35,9 +35,6 @@
             </div>
         </header>
 
-        {% if session['curr_user'] %}
-
-
         <h1 class="text-center h1">Favorites</h1>
         <div class="container">
             {% if favorites == [] %}
@@ -76,7 +73,7 @@
                 {% endfor %}
             </div>
             {% endif %}
-            {% endif %}
+
         </div>
 </body>
 

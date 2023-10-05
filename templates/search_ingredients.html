@@ -39,7 +39,7 @@
                 {{message}}
             </p>
             {% endfor %}
-            <form action="/handle_search_ingredients" method="POST">
+            <form action="/handle_search" method="POST">
 
                 {{form.hidden_tag()}}
                 {% for field in form if field.widget.input_type != 'hidden' %}
