@@ -14,15 +14,12 @@ import requests
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
-# with app.app_context():
-app.app_context().push()
-
 app.config['SECRET_KEY'] = 'my secret!'
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///cocktail_db'
-connect_db(app)
 
-# with app.app_context():
-#     db.drop_all()
+with app.app_context():
+    connect_db(app)
+
 
 base_url = f'https://www.thecocktaildb.com/api/json/v2/{API_KEY}'
 
