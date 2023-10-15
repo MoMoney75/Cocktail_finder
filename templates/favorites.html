@@ -5,7 +5,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Favorites</title>
-    <link rel="stylesheet" href="static/app.css">
+    <link rel="stylesheet" href="/static/app.css">
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet"
         integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
 
@@ -13,14 +13,13 @@
 
 <body class="p-3 mb-2 bg-info-subtle text-emphasis-info">
 
-    <div>
+    <div style="width: 100%;">
         <header class="nav-bar-header">
             <div class="main-content">
                 <div class="row">
                     <nav class="navbar">
                         <ul>
-                            <!-- <a href="/{{user_id}}/favorites">Favorites</a> -->
-                            <a href="/search_ingredients">Search for drink</a>
+                            <a href="/search">Search</a>
                             <li class="submenu">
                                 <a href="#">Account</a>
                                 <ul class="submenu-content">
@@ -35,46 +34,51 @@
             </div>
         </header>
 
+
         <h1 class="text-center h1">Favorites</h1>
+
+        {% if favorites == [] %}
+
+        {% for message in get_flashed_messages() %}
+
+        <p class="text-center">{{message}}</p>
+
+        {% endfor %}
+
+        <p class="text-center">You have no favorites!</p>
+
+        {% else %}
+
+        {% for message in get_flashed_messages() %}
+
+        <p class="text-center">{{message}}</p>
+
+        {% endfor %}
         <div class="container">
-            {% if favorites == [] %}
-
-            {% for message in get_flashed_messages() %}
-
-            <p class="text-center">{{message}}</p>
-
-            {% endfor %}
-
-            <p class="text-center">You have no favorites!</p>
-
-            {% else %}
-
-            {% for message in get_flashed_messages() %}
-
-            <p class="text-center">{{message}}</p>
-
-            {% endfor %}
-            <div class=" row">
+            <div class="row">
                 {% for drink in drink_data %}
                 <div class="col-md-2">
                     <a href="/details/{{ drink['details']['idDrink']}}">
-                        <p>{{ drink['name'] }}</p>
+                        <h3 class="h6">{{ drink['name'] }}</h3>
                     </a>
 
-                    <img src="{{ drink['details']['strDrinkThumb']}}" style=width:100px, height=100px
-                        alt="picture of {{drink['name']}}">
+                    <img src="{{ drink['details']['strDrinkThumb']}}" alt="picture of {{drink['name']}}"
+                        class="img-fluid">
 
-                    <form action="/{{drink['details']['idDrink']}}/delete_favorite" , method="post">
+                    <form action=" /{{drink['details']['idDrink']}}/delete_favorite" , method="post">
 
-                        <button class="btn btn-outline-danger">remove</button>
-
+                        <button class="btn btn-outline-danger">Remove</button>
                     </form>
                 </div>
                 {% endfor %}
             </div>
-            {% endif %}
+
 
         </div>
+        {% endif %}
+    </div>
+
+
 </body>
 
 </html>

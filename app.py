@@ -286,7 +286,7 @@ def edit_user(user_id):
             session['curr_user'] = user.username
             session['user_id'] = user.user_id
             flash("User settings successfully updated!")
-            return redirect('/search_ingredients')
+            return redirect('/search')
         
     else:
         flash("You must be logged in to view this page!")
