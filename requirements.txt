@@ -3,10 +3,10 @@ blinker==1.6.2
 certifi==2023.7.22
 charset-normalizer==3.2.0
 click==8.1.7
-Flask==2.2.5
+Flask==3.0.0
 Flask-Bcrypt==1.0.1
 Flask-DebugToolbar==0.13.1
-Flask-SQLAlchemy==3.1.1
+Flask-SQLAlchemy==3.0.5
 Flask-WTF==1.1.1
 greenlet==2.0.2
 idna==3.4
@@ -19,5 +19,5 @@ requests==2.31.0
 SQLAlchemy==2.0.20
 typing_extensions==4.7.1
 urllib3==2.0.4
-Werkzeug==2.3.7
+Werkzeug==3.0.0
 WTForms==3.0.1
