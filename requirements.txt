@@ -3,7 +3,7 @@ blinker==1.6.2
 certifi==2023.7.22
 charset-normalizer==3.2.0
 click==8.1.7
-Flask==2.3.3
+Flask==2.2.5
 Flask-Bcrypt==1.0.1
 Flask-DebugToolbar==0.13.1
 Flask-SQLAlchemy==3.1.1
