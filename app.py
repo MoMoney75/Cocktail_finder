@@ -148,6 +148,8 @@ def get_cocktails():
             recipe = ','.join(ingredients)
             response = requests.get(f"{base_url}/filter.php?i={recipe}")
             print(f"STATUSCODE {response.status_code}")
+            print(f" MY API KEY: {API_KEY}")
+            print(f"MY BASE URL:"{base_url})
             data = response.json()
             
             print(data)
