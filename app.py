@@ -147,10 +147,11 @@ def get_cocktails():
 
             recipe = ','.join(ingredients)
             response = requests.get(f"{base_url}/filter.php?i={recipe}")
+            print(f"STATUSCODE {response.status_code}")
             data = response.json()
             
             print(data)
-            print(f"STATUSCODE {response.status_code}")
+            
 
             if data == {'drinks': 'None Found'}:
                 flash("No drinks found with all of the ingredients, Please try a different ingredient")
