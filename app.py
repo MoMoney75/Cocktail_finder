@@ -7,6 +7,7 @@ from dotenv import load_dotenv
 load_dotenv()
 
 API_KEY = os.getenv("API_KEY")
+SECRET_KEY = os.getenv("SECRET_KEY")
 
 import requests
 
@@ -14,7 +15,7 @@ import requests
 app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
-app.config['SECRET_KEY'] = 'my secret!'
+app.config['SECRET_KEY'] = SECRET_KEY
 app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wkebvnoe:LZQUWP5OqP6O6vLl1y1Gfjy3GGVbnb78@bubble.db.elephantsql.com/wkebvnoe'
 
 with app.app_context():
