@@ -15,7 +15,7 @@ app = Flask(__name__)
 bcrypt = Bcrypt(app)
 
 app.config['SECRET_KEY'] = 'my secret!'
-app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql://wkebvnoe:LZQUWP5OqP6O6vLl1y1Gfjy3GGVbnb78@bubble.db.elephantsql.com/wkebvnoe '
+app.config['SQLALCHEMY_DATABASE_URI'] = 'postgresql:///wkebvnoe:LZQUWP5OqP6O6vLl1y1Gfjy3GGVbnb78@bubble.db.elephantsql.com/wkebvnoe'
 
 with app.app_context():
     connect_db(app)
